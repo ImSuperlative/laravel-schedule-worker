@@ -60,6 +60,6 @@ class ScheduleCommand
 
     protected static function getLogChannel(): string
     {
-        return config('scheduleWorker.logging');
+        return config('scheduleWorker.log.channel');
     }
 }
