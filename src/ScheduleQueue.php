@@ -44,7 +44,7 @@ class ScheduleQueue
             $command[] = static::parseOption($key, $value);
         }
 
-        return $this->make($command);
+        return $this->make(array_filter($command));
     }
 
     public function parseQueue(): string
@@ -61,9 +61,11 @@ class ScheduleQueue
     {
         $command = static::ARGUMENT_PREFIX . $key;
 
-        return is_bool($value)
-            ? $command
-            : "$command=$value";
+        if (is_bool($value)) {
+            return $value === false ? '' : $command;
+        }
+
+        return "$command=$value";
     }
 
     public function getNumproc(): int
