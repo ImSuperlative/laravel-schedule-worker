@@ -1,7 +1,7 @@
 {
   "name": "imsuperlative/laravel-schedule-worker",
   "description": "Laravel queue worker, using schedule",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords": [
     "laravel"
   ],
