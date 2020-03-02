@@ -1,0 +1,34 @@
+{
+  "name": "imsuperlative/laravel-schedule-worker",
+  "description": "Laravel queue worker, using schedule",
+  "version": "0.1",
+  "keywords": [
+    "laravel"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "imsuperlative",
+      "email": "iamsuperlative@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "laravel/framework": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "imsuperlative\\scheduleWorker\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "imsuperlative\\scheduleWorker\\ScheduleQueueServiceProvider"
+      ],
+      "aliases": {}
+    }
+  }
+}
