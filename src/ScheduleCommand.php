@@ -37,7 +37,9 @@ class ScheduleCommand
             ->everyMinute()
             ->when(config('scheduleWorker.enabled'));
 
-        static::log($event);
+        if (config('scheduleWorker.log.enabled')) {
+            static::log($event);
+        }
 
         return $event;
     }
