@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class ScheduleCommand
 {
-    public static function make(): array
+    public static function make(bool $unique = false): array
     {
         $commands = [];
 
@@ -18,7 +18,8 @@ class ScheduleCommand
             // todo clean up
             if ($command->isMultiple()) {
                 for ($i = 0; $i < $command->getNumproc(); $i++) {
-                    $commands[] = $command->makeCommand() . static::mutexNameHash($i);
+                    $hash = $unique ? $i . '_' . gethostname() : (string) $i;
+                    $commands[] = $command->makeCommand() . static::mutexNameHash($hash);
                 }
             } else {
                 $commands[] = $command->makeCommand();
@@ -44,9 +45,9 @@ class ScheduleCommand
         return $event;
     }
 
-    protected static function mutexNameHash(int $index): string
+    protected static function mutexNameHash(string $hash): string
     {
-        return '; echo ' . $index;
+        return '; echo ' . $hash;
     }
 
     protected static function log(Event $event)
